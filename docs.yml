@@ -1,0 +1,122 @@
+openapi: 3.0.0
+info:
+    title: Questable REST API
+    description: REST API for Questable Bot
+    version: 1.0.0
+
+servers:
+    - url: "https://api.questable.webionite.com/"
+
+paths:
+    /auth:
+        get:
+            summary: auth
+            description: Check whether the token is valid or not
+            parameters:
+                - $ref: '#/components/schemas/token'
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/auth'
+
+    /get_quests:
+        get:
+            summary: get_quests
+            description: Get an array of incomplete quests
+            parameters:
+                - $ref: '#/components/schemas/token'
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/quests'
+
+    /get_side_quests:
+        get:
+            summary: get_side_quests
+            description: Get an array of incomplete side quests
+            parameters:
+                - $ref: '#/components/schemas/token'
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/quests'
+
+    /get_quest:
+        get:
+            summary: get_quest
+            description: Get a Quest
+            parameters:
+                - $ref: '#/components/schemas/token'
+                - $ref: '#/components/schemas/id'
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/quests'
+
+    /get_side_quest:
+        get:
+            summary: get_side_quest
+            description: Get a Side Quest
+            parameters:
+                - $ref: '#/components/schemas/token'
+                - $ref: '#/components/schemas/id'
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/quests'
+
+components:
+    schemas:
+        auth:
+            required:
+                - success
+            properties:
+                success:
+                    type: boolean
+        token:
+            name: token
+            in: query
+            description: Token recieved from Questable Bot
+            required: true
+            schema:
+                type: String
+        id:
+            name: id
+            in: query
+            description: ID of the Quest/Side Quest
+            required: true
+            schema:
+                type: integer
+        quests:
+            required:
+                - name
+                - difficulty
+                - priority
+                - state
+            properties:
+                name:
+                    type: string
+                    description: Name of the quest/side quest
+                difficulty:
+                    type: integer
+                    description: A value from 1 to 3 representing Low, Medium, High
+                priority:
+                    type: integer
+                    description: A value from 1 to 3 representing Low, Medium, High
+                state:
+                    type: boolean
+                    description: True if the quest/side quest has been completed
