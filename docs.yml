@@ -71,6 +71,8 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/quests'
+                400:
+                    $ref: "#/components/responses/bad_request"
                 401:
                     $ref: "#/components/responses/bad_auth"
 
@@ -88,6 +90,8 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/quests'
+                400:
+                    $ref: "#/components/responses/bad_request"
                 401:
                     $ref: "#/components/responses/bad_auth"
 
@@ -137,6 +141,27 @@ paths:
                 400:
                     $ref: "#/components/responses/bad_request"
 
+    /delete_quest:
+        delete:
+            summary: delete_quest
+            description: Delete a Quest
+            parameters:
+                - $ref: '#/components/schemas/token'
+                - $ref: '#/components/schemas/id'
+            responses:
+                200:
+                    $ref: '#/components/responses/success'
+
+    /delete_side_quest:
+        delete:
+            summary: delete_side_quest
+            description: Delete a Side Quest
+            parameters:
+                - $ref: '#/components/schemas/token'
+                - $ref: '#/components/schemas/id'
+            responses:
+                200:
+                    $ref: '#/components/responses/success'
 
 components:
     schemas:
@@ -230,3 +255,13 @@ components:
                             error:
                                 type: string
                                 description: The token is invalid
+        success:
+            description: Returns the success / failure
+            content:
+                application/json:
+                    schema:
+                        required:
+                            - success
+                        properties:
+                            success:
+                                type: boolean
