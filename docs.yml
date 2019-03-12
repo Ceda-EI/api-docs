@@ -29,12 +29,15 @@ paths:
                 - $ref: '#/components/schemas/token'
             responses:
                 200:
+                    description: Returns an array of incomplete quests
                     content:
                         application/json:
                             schema:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/quests'
+                401:
+                    $ref: "#/components/responses/bad_auth"
 
     /get_side_quests:
         get:
@@ -44,12 +47,15 @@ paths:
                 - $ref: '#/components/schemas/token'
             responses:
                 200:
+                    description: Returns an array of incomplete side quests
                     content:
                         application/json:
                             schema:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/quests'
+                401:
+                    $ref: "#/components/responses/bad_auth"
 
     /get_quest:
         get:
@@ -60,10 +66,13 @@ paths:
                 - $ref: '#/components/schemas/id'
             responses:
                 200:
+                    description: Returns the quest.
                     content:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/quests'
+                401:
+                    $ref: "#/components/responses/bad_auth"
 
     /get_side_quest:
         get:
@@ -74,10 +83,60 @@ paths:
                 - $ref: '#/components/schemas/id'
             responses:
                 200:
+                    description: Returns the side quest.
                     content:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/quests'
+                401:
+                    $ref: "#/components/responses/bad_auth"
+
+    /update_quest:
+        post:
+            summary: update_quest
+            description: To change any of the parameters of a quest. (Pass atleast one of optional parameters)
+            parameters:
+                - $ref: '#/components/schemas/token'
+                - $ref: '#/components/schemas/id'
+                - $ref: '#/components/schemas/name'
+                - $ref: '#/components/schemas/difficulty'
+                - $ref: '#/components/schemas/priority'
+                - $ref: '#/components/schemas/state'
+            responses:
+                200:
+                    description: Returns the updated quest.
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/quests'
+                401:
+                    $ref: "#/components/responses/bad_auth"
+                400:
+                    $ref: "#/components/responses/bad_request"
+
+    /update_side_quest:
+        post:
+            summary: update_side_quest
+            description: To change any of the parameters of a side quest. (Pass atleast one of optional parameters)
+            parameters:
+                - $ref: '#/components/schemas/token'
+                - $ref: '#/components/schemas/id'
+                - $ref: '#/components/schemas/name'
+                - $ref: '#/components/schemas/difficulty'
+                - $ref: '#/components/schemas/priority'
+                - $ref: '#/components/schemas/state'
+            responses:
+                200:
+                    description: Returns the updated side quest.
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/quests'
+                401:
+                    $ref: "#/components/responses/bad_auth"
+                400:
+                    $ref: "#/components/responses/bad_request"
+
 
 components:
     schemas:
@@ -120,3 +179,54 @@ components:
                 state:
                     type: boolean
                     description: True if the quest/side quest has been completed
+        name:
+            name: name
+            in: query
+            description: Updated Name of the quest/side quest
+            required: false
+            schema:
+                type: string
+        priority:
+            name: priority
+            in: query
+            description: New Priority to set. (Low = 1, Medium = 2, High = 3)
+            required: false
+            schema:
+                type: integer
+        difficulty:
+            name: difficulty
+            in: query
+            description: New Difficulty to set. (Low = 1, Medium = 2, High = 3)
+            required: false
+            schema:
+                type: integer
+        state:
+            name: state
+            in: query
+            description: New state. (can only be true, completed quests can't be un-completed)
+            required: false
+            schema:
+                type: true
+    responses:
+        bad_request:
+            description: The request has missing parameters.
+            content:
+                application/json:
+                    schema:
+                        required:
+                            - error
+                        properties:
+                            error:
+                                type: string
+                                description: Explains the error. Possible values are "insufficient parameters"
+        bad_auth:
+            description: The token is invalid.
+            content:
+                application/json:
+                    schema:
+                        required:
+                            - error
+                        properties:
+                            error:
+                                type: string
+                                description: The token is invalid
