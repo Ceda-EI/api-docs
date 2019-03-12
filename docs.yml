@@ -138,7 +138,7 @@ paths:
 
     /add_quest:
         post:
-            summary: /add_quest
+            summary: add_quest
             description: Add a quest
             parameters:
                 - $ref: '#/components/schemas/token'
@@ -163,7 +163,7 @@ paths:
 
     /add_side_quest:
         post:
-            summary: /add_side_quest
+            summary: add_side_quest
             description: Add a side quest
             parameters:
                 - $ref: '#/components/schemas/token'
