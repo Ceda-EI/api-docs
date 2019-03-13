@@ -142,13 +142,9 @@ paths:
             description: Add a quest
             parameters:
                 - $ref: '#/components/schemas/token'
-                  required: true
-                - $ref: '#/components/schemas/name'
-                  required: true
-                - $ref: '#/components/schemas/priority'
-                  required: true
-                - $ref: '#/components/schemas/difficulty'
-                  required: true
+                - $ref: '#/components/schemas/name_req'
+                - $ref: '#/components/schemas/priority_req'
+                - $ref: '#/components/schemas/difficulty_req'
             responses:
                 200:
                     description: Returns the added Quest
@@ -167,13 +163,9 @@ paths:
             description: Add a side quest
             parameters:
                 - $ref: '#/components/schemas/token'
-                  required: true
-                - $ref: '#/components/schemas/name'
-                  required: true
-                - $ref: '#/components/schemas/priority'
-                  required: true
-                - $ref: '#/components/schemas/difficulty'
-                  required: true
+                - $ref: '#/components/schemas/name_req'
+                - $ref: '#/components/schemas/priority_req'
+                - $ref: '#/components/schemas/difficulty_req'
             responses:
                 200:
                     description: Returns the added Side Quest
@@ -343,6 +335,27 @@ components:
             required: false
             schema:
                 type: true
+        name_req:
+            name: name
+            in: query
+            description: Updated Name of the quest/side quest
+            required: true
+            schema:
+                type: string
+        priority_req:
+            name: priority
+            in: query
+            description: New Priority to set. (Low = 1, Medium = 2, High = 3)
+            required: true
+            schema:
+                type: integer
+        difficulty_req:
+            name: difficulty
+            in: query
+            description: New Difficulty to set. (Low = 1, Medium = 2, High = 3)
+            required: true
+            schema:
+                type: integer
     responses:
         bad_request:
             description: The request has missing parameters.
