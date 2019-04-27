@@ -7,9 +7,20 @@ info:
 servers:
     - url: "https://api.questable.webionite.com/"
 
+tags:
+    - name: Authentication
+      description: Endpoints related to authentication
+    - name: Player
+      description: Endpoints related to player
+    - name: Quests
+      description: Endpoints related to quests
+    - name: Side Quests
+      description: Endpoints related to side quests
 paths:
     /auth:
         get:
+            tags:
+                - Authentication
             summary: auth
             description: Check whether the token is valid or not
             parameters:
@@ -23,6 +34,8 @@ paths:
 
     /player:
         get:
+            tags:
+                - Player
             summary: player
             description: Get info about the user
             parameters:
@@ -60,6 +73,8 @@ paths:
 
     /get_quests:
         get:
+            tags:
+                - Quests
             summary: get_quests
             description: Get an array of incomplete quests
             parameters:
@@ -78,6 +93,8 @@ paths:
 
     /get_side_quests:
         get:
+            tags:
+                - Side Quests
             summary: get_side_quests
             description: Get an array of incomplete side quests
             parameters:
@@ -96,6 +113,8 @@ paths:
 
     /get_quest:
         get:
+            tags:
+                - Quests
             summary: get_quest
             description: Get a Quest
             parameters:
@@ -117,6 +136,8 @@ paths:
 
     /get_side_quest:
         get:
+            tags:
+                - Side Quests
             summary: get_side_quest
             description: Get a Side Quest
             parameters:
@@ -138,6 +159,8 @@ paths:
 
     /add_quest:
         post:
+            tags:
+                - Quests
             summary: add_quest
             description: Add a quest
             parameters:
@@ -159,6 +182,8 @@ paths:
 
     /add_side_quest:
         post:
+            tags:
+                - Side Quests
             summary: add_side_quest
             description: Add a side quest
             parameters:
@@ -180,6 +205,8 @@ paths:
 
     /update_quest:
         post:
+            tags:
+                - Quests
             summary: update_quest
             description: To change any of the parameters of a quest. (Pass atleast one of optional parameters)
             parameters:
@@ -205,6 +232,8 @@ paths:
 
     /update_side_quest:
         post:
+            tags:
+                - Side Quests
             summary: update_side_quest
             description: To change any of the parameters of a side quest. (Pass atleast one of optional parameters)
             parameters:
@@ -230,6 +259,8 @@ paths:
 
     /delete_quest:
         delete:
+            tags:
+                - Quests
             summary: delete_quest
             description: Delete a Quest
             parameters:
@@ -247,6 +278,8 @@ paths:
 
     /delete_side_quest:
         delete:
+            tags:
+                - Side Quests
             summary: delete_side_quest
             description: Delete a Side Quest
             parameters:
