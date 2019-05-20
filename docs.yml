@@ -17,7 +17,7 @@ tags:
     - name: Side Quests
       description: Endpoints related to side quests
 paths:
-    /auth:
+    auth:
         get:
             tags:
                 - Authentication
@@ -32,7 +32,7 @@ paths:
                             schema:
                                 $ref: '#/components/schemas/auth'
 
-    /player:
+    player:
         get:
             tags:
                 - Player
@@ -71,7 +71,7 @@ paths:
                 401:
                     $ref: "#/components/responses/bad_auth"
 
-    /get_quests:
+    get_quests:
         get:
             tags:
                 - Quests
@@ -91,7 +91,7 @@ paths:
                 401:
                     $ref: "#/components/responses/bad_auth"
 
-    /get_side_quests:
+    get_side_quests:
         get:
             tags:
                 - Side Quests
@@ -111,7 +111,7 @@ paths:
                 401:
                     $ref: "#/components/responses/bad_auth"
 
-    /get_quest:
+    get_quest:
         get:
             tags:
                 - Quests
@@ -134,7 +134,7 @@ paths:
                 404:
                     $ref: "#/components/responses/doesnt_exist"
 
-    /get_side_quest:
+    get_side_quest:
         get:
             tags:
                 - Side Quests
@@ -157,7 +157,7 @@ paths:
                 404:
                     $ref: "#/components/responses/doesnt_exist"
 
-    /add_quest:
+    add_quest:
         post:
             tags:
                 - Quests
@@ -180,7 +180,7 @@ paths:
                 401:
                     $ref: "#/components/responses/bad_auth"
 
-    /add_side_quest:
+    add_side_quest:
         post:
             tags:
                 - Side Quests
@@ -203,7 +203,7 @@ paths:
                 401:
                     $ref: "#/components/responses/bad_auth"
 
-    /update_quest:
+    update_quest:
         post:
             tags:
                 - Quests
@@ -230,7 +230,7 @@ paths:
                 404:
                     $ref: "#/components/responses/doesnt_exist"
 
-    /update_side_quest:
+    update_side_quest:
         post:
             tags:
                 - Side Quests
@@ -257,7 +257,7 @@ paths:
                 404:
                     $ref: "#/components/responses/doesnt_exist"
 
-    /delete_quest:
+    delete_quest:
         delete:
             tags:
                 - Quests
@@ -276,7 +276,7 @@ paths:
                 404:
                     $ref: "#/components/responses/doesnt_exist"
 
-    /delete_side_quest:
+    delete_side_quest:
         delete:
             tags:
                 - Side Quests
